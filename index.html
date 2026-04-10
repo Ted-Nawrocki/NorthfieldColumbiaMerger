@@ -1,0 +1,1429 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Columbia Financial & Northfield Bancorp | Transaction Analysis</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --navy:     #001E3C;
+  --navy-mid: #002B55;
+  --navy-ui:  #0A2E58;
+  --gold:     #C9982A;
+  --gold-lt:  #E2B84A;
+  --gold-dim: rgba(201,152,42,0.18);
+  --white:    #FFFFFF;
+  --off:      #F5F4F0;
+  --ink:      #1A2535;
+  --muted:    #6B7A8D;
+  --rule:     rgba(201,152,42,0.35);
+  --border:   rgba(255,255,255,0.08);
+  --border-d: rgba(0,30,60,0.12);
+}
+
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; font-size: 16px; }
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 400;
+  color: var(--ink);
+  background: var(--navy);
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ─── TYPOGRAPHY ─── */
+.serif { font-family: 'Cormorant Garamond', serif; }
+
+h1,h2,h3 { font-family: 'Cormorant Garamond', serif; line-height: 1.1; }
+
+/* ─── NAV ─── */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+  background: var(--navy);
+  border-bottom: 1px solid var(--border);
+  height: 56px;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 clamp(20px, 5vw, 64px);
+}
+.nav-logo {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 15px; font-weight: 600;
+  color: rgba(255,255,255,0.85);
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+}
+.nav-links {
+  display: flex; gap: 28px; list-style: none;
+}
+.nav-links a {
+  color: rgba(255,255,255,0.5);
+  text-decoration: none;
+  font-size: 11px; font-weight: 500;
+  letter-spacing: 0.12em; text-transform: uppercase;
+  transition: color 0.2s;
+}
+.nav-links a:hover { color: var(--gold-lt); }
+.hamburger {
+  display: none; flex-direction: column; gap: 5px;
+  cursor: pointer; padding: 4px;
+}
+.hamburger span {
+  display: block; width: 22px; height: 2px;
+  background: rgba(255,255,255,0.7);
+  transition: all 0.3s;
+}
+.mobile-menu {
+  display: none;
+  position: fixed; top: 56px; left: 0; right: 0; z-index: 190;
+  background: var(--navy);
+  border-bottom: 1px solid var(--border);
+  padding: 20px clamp(20px, 5vw, 64px);
+  flex-direction: column; gap: 0;
+}
+.mobile-menu.open { display: flex; }
+.mobile-menu a {
+  color: rgba(255,255,255,0.65);
+  text-decoration: none;
+  font-size: 13px; font-weight: 500;
+  letter-spacing: 0.08em; text-transform: uppercase;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--border);
+}
+.mobile-menu a:last-child { border-bottom: none; }
+
+/* ─── HERO ─── */
+.hero {
+  background: var(--navy);
+  padding: clamp(100px,14vw,160px) clamp(20px,5vw,64px) clamp(60px,8vw,100px);
+  border-bottom: 1px solid var(--border);
+}
+.hero-inner { max-width: 1100px; margin: 0 auto; }
+
+.hero-eyebrow {
+  display: flex; align-items: center; gap: 16px;
+  margin-bottom: 32px;
+}
+.hero-tag {
+  font-size: 10px; font-weight: 600;
+  letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--gold);
+  border: 1px solid var(--gold);
+  padding: 5px 12px; border-radius: 2px;
+}
+.hero-date {
+  font-size: 11px; color: rgba(255,255,255,0.35);
+  letter-spacing: 0.06em;
+}
+
+.hero h1 {
+  font-size: clamp(38px, 6.5vw, 80px);
+  font-weight: 600;
+  color: var(--white);
+  max-width: 920px;
+  margin-bottom: 28px;
+  letter-spacing: -0.01em;
+}
+.hero h1 em { font-style: italic; color: var(--gold-lt); }
+
+.hero-lead {
+  font-size: clamp(15px, 2vw, 17px);
+  color: rgba(255,255,255,0.55);
+  max-width: 680px;
+  line-height: 1.75;
+  margin-bottom: 56px;
+  font-weight: 300;
+}
+
+.hero-rule {
+  width: 60px; height: 2px;
+  background: var(--gold);
+  margin-bottom: 40px;
+}
+
+.stats-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  border: 1px solid var(--border);
+  border-radius: 3px;
+  overflow: hidden;
+}
+.stat-cell {
+  padding: clamp(16px,3vw,28px) clamp(16px,3vw,28px);
+  border-right: 1px solid var(--border);
+}
+.stat-cell:last-child { border-right: none; }
+.stat-val {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(26px, 4vw, 40px);
+  font-weight: 700;
+  color: var(--white);
+  line-height: 1;
+  margin-bottom: 6px;
+}
+.stat-lbl {
+  font-size: 10.5px; font-weight: 500;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  color: rgba(255,255,255,0.35);
+}
+
+/* ─── SECTION SHELL ─── */
+.section-dark {
+  background: var(--navy);
+  padding: clamp(56px,8vw,96px) clamp(20px,5vw,64px);
+  border-bottom: 1px solid var(--border);
+}
+.section-light {
+  background: var(--off);
+  padding: clamp(56px,8vw,96px) clamp(20px,5vw,64px);
+  border-bottom: 1px solid rgba(0,30,60,0.1);
+}
+.section-inner { max-width: 1100px; margin: 0 auto; }
+
+.section-label {
+  font-size: 10.5px; font-weight: 600;
+  letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 12px;
+}
+.section-label-dark {
+  font-size: 10.5px; font-weight: 600;
+  letter-spacing: 0.18em; text-transform: uppercase;
+  color: rgba(201,152,42,0.7);
+  margin-bottom: 12px;
+}
+
+h2.dark {
+  font-size: clamp(28px, 4vw, 48px);
+  color: var(--white);
+  margin-bottom: 16px;
+  font-weight: 600;
+}
+h2.light {
+  font-size: clamp(28px, 4vw, 48px);
+  color: var(--navy);
+  margin-bottom: 16px;
+  font-weight: 600;
+}
+
+.lead-dark {
+  font-size: clamp(14.5px, 1.8vw, 16.5px);
+  color: rgba(255,255,255,0.5);
+  max-width: 680px; line-height: 1.75;
+  margin-bottom: 48px; font-weight: 300;
+}
+.lead-light {
+  font-size: clamp(14.5px, 1.8vw, 16.5px);
+  color: var(--muted);
+  max-width: 680px; line-height: 1.75;
+  margin-bottom: 48px; font-weight: 300;
+}
+
+/* ─── GOLD RULE DIVIDER ─── */
+.gold-rule {
+  width: 48px; height: 2px;
+  background: var(--gold);
+  margin-bottom: 32px;
+}
+
+/* ─── PROSE ─── */
+p.dark-p {
+  color: rgba(255,255,255,0.55);
+  font-size: 15px; line-height: 1.8;
+  margin-bottom: 16px; font-weight: 300;
+}
+p.light-p {
+  color: #3A4A5C;
+  font-size: 15px; line-height: 1.8;
+  margin-bottom: 16px;
+}
+
+/* ─── SOURCE TAG ─── */
+.src {
+  display: inline-block;
+  background: rgba(201,152,42,0.12);
+  color: var(--gold);
+  font-size: 9.5px; font-weight: 600;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  padding: 2px 7px; border-radius: 2px;
+  margin-left: 5px; vertical-align: middle;
+  white-space: nowrap;
+}
+.src-dark {
+  display: inline-block;
+  background: rgba(0,30,60,0.08);
+  color: var(--navy-mid);
+  font-size: 9.5px; font-weight: 600;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  padding: 2px 7px; border-radius: 2px;
+  margin-left: 5px; vertical-align: middle;
+  white-space: nowrap;
+}
+
+/* ─── GRID UTILITIES ─── */
+.col-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(24px, 4vw, 56px);
+}
+.col-3 {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 24px;
+}
+
+/* ─── PARTY CARDS ─── */
+.party-card {
+  border: 1px solid var(--border);
+  border-radius: 3px;
+  overflow: hidden;
+}
+.party-head {
+  background: var(--navy-ui);
+  padding: clamp(20px,3vw,28px);
+  border-bottom: 1px solid var(--border);
+  display: flex; align-items: flex-start;
+  justify-content: space-between; gap: 12px;
+}
+.party-head-text {}
+.party-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(18px, 3vw, 26px);
+  font-weight: 700; color: var(--white);
+  line-height: 1.15;
+}
+.party-sub {
+  font-size: 12px; color: rgba(255,255,255,0.4);
+  margin-top: 4px; letter-spacing: 0.02em;
+}
+.ticker-badge {
+  background: var(--gold);
+  color: var(--navy);
+  font-size: 11px; font-weight: 700;
+  letter-spacing: 0.08em;
+  padding: 4px 10px; border-radius: 2px;
+  white-space: nowrap; flex-shrink: 0;
+  margin-top: 2px;
+}
+.party-stats {
+  display: grid; grid-template-columns: 1fr 1fr;
+  background: var(--navy-ui);
+  border-bottom: 1px solid var(--border);
+}
+.ps-cell {
+  padding: 16px clamp(16px,3vw,24px);
+  border-right: 1px solid var(--border);
+}
+.ps-cell:nth-child(2n) { border-right: none; }
+.ps-cell:nth-child(n+3) { border-top: 1px solid var(--border); }
+.ps-label {
+  font-size: 9.5px; font-weight: 600;
+  letter-spacing: 0.12em; text-transform: uppercase;
+  color: rgba(255,255,255,0.3); margin-bottom: 4px;
+}
+.ps-val {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 22px; font-weight: 700; color: var(--white);
+}
+.party-body {
+  background: rgba(0,30,60,0.4);
+  padding: clamp(20px,3vw,28px);
+}
+.party-body p {
+  font-size: 13.5px; color: rgba(255,255,255,0.5);
+  line-height: 1.75; margin-bottom: 0; font-weight: 300;
+}
+.party-note {
+  margin-top: 12px; padding-top: 12px;
+  border-top: 1px solid var(--border);
+  font-size: 12px; color: rgba(201,152,42,0.65);
+  line-height: 1.6;
+}
+
+/* ─── DEAL STRUCTURE DIAGRAM ─── */
+.diagram-wrap {
+  background: var(--navy-ui);
+  border: 1px solid var(--border);
+  border-radius: 3px;
+  padding: clamp(24px,4vw,48px);
+  overflow-x: auto;
+}
+.diagram-cap {
+  font-size: 10px; font-weight: 600;
+  letter-spacing: 0.16em; text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 28px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--border);
+}
+.structure-svg {
+  min-width: 760px;
+  width: 100%;
+  display: block;
+}
+
+/* ─── STEP CARDS ─── */
+.step-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 3px;
+  margin-top: 40px;
+}
+.step-card {
+  background: var(--navy-ui);
+  border: 1px solid var(--border);
+  padding: clamp(24px,3vw,36px);
+  position: relative;
+}
+.step-number {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 64px; font-weight: 700;
+  color: rgba(201,152,42,0.12);
+  line-height: 1;
+  position: absolute; top: 16px; right: 20px;
+}
+.step-label {
+  font-size: 9.5px; font-weight: 600;
+  letter-spacing: 0.16em; text-transform: uppercase;
+  color: var(--gold); margin-bottom: 12px;
+}
+.step-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(17px,2.5vw,22px);
+  font-weight: 600; color: var(--white);
+  margin-bottom: 12px; line-height: 1.2;
+}
+.step-desc {
+  font-size: 13.5px; color: rgba(255,255,255,0.45);
+  line-height: 1.75; font-weight: 300;
+}
+
+/* ─── CALLOUT QUOTE ─── */
+.callout {
+  border-left: 3px solid var(--gold);
+  padding: 20px 24px;
+  background: rgba(201,152,42,0.06);
+  border-radius: 0 3px 3px 0;
+  margin: 28px 0;
+}
+.callout p {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(16px,2.2vw,20px);
+  font-style: italic;
+  color: rgba(255,255,255,0.8);
+  margin-bottom: 8px; line-height: 1.5;
+}
+.callout-src {
+  font-size: 11px; color: rgba(255,255,255,0.3);
+  letter-spacing: 0.04em;
+}
+
+.callout-light {
+  border-left: 3px solid var(--navy);
+  padding: 20px 24px;
+  background: rgba(0,30,60,0.06);
+  border-radius: 0 3px 3px 0;
+  margin: 28px 0;
+}
+.callout-light p {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(16px,2.2vw,20px);
+  font-style: italic;
+  color: var(--navy); margin-bottom: 8px; line-height: 1.5;
+}
+.callout-light .callout-src { color: var(--muted); }
+
+/* ─── APPRAISAL BAR ─── */
+.appraisal-wrap {
+  background: var(--navy-ui);
+  border: 1px solid var(--border);
+  border-radius: 3px;
+  padding: clamp(24px,3vw,36px);
+  margin: 32px 0;
+}
+.appraisal-title {
+  font-size: 10px; font-weight: 600;
+  letter-spacing: 0.16em; text-transform: uppercase;
+  color: rgba(201,152,42,0.7); margin-bottom: 20px;
+}
+.bar-endpoints {
+  display: flex; justify-content: space-between;
+  margin-bottom: 8px;
+}
+.bar-endpoint { font-size: 11px; color: rgba(255,255,255,0.35); }
+.bar-track-outer {
+  height: 8px; background: rgba(255,255,255,0.07);
+  border-radius: 4px; position: relative; margin-bottom: 20px;
+}
+.bar-fill-inner {
+  position: absolute; inset: 0;
+  background: linear-gradient(90deg, rgba(201,152,42,0.4), var(--gold));
+  border-radius: 4px;
+}
+.bar-midmark {
+  position: absolute; top: -6px;
+  left: 54.5%; transform: translateX(-50%);
+  width: 2px; height: 20px;
+  background: var(--white);
+}
+.bar-midmark::before {
+  content: 'MIDPOINT';
+  position: absolute; bottom: 22px; left: 50%;
+  transform: translateX(-50%);
+  font-size: 9px; font-weight: 700;
+  color: var(--white); letter-spacing: 0.1em;
+  white-space: nowrap;
+}
+.bar-vals {
+  display: flex; justify-content: space-between;
+}
+.bar-item {}
+.bar-item-val {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(18px,2.5vw,26px);
+  font-weight: 700; color: var(--white); line-height: 1;
+}
+.bar-item-lbl {
+  font-size: 10px; color: rgba(255,255,255,0.3);
+  margin-top: 4px; letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+.bar-item:last-child { text-align: right; }
+.midpoint-val { text-align: center; }
+.midpoint-val .bar-item-val { color: var(--gold-lt); }
+
+/* ─── SUBSCRIPTION WATERFALL ─── */
+.waterfall { margin-top: 32px; }
+.wf-row {
+  display: grid;
+  grid-template-columns: 48px 1fr;
+  gap: 16px;
+  align-items: flex-start;
+  padding: clamp(16px,2vw,22px) 0;
+  border-bottom: 1px solid var(--border);
+}
+.wf-row:last-child { border-bottom: none; }
+.wf-num {
+  width: 36px; height: 36px; border-radius: 50%;
+  background: var(--gold-dim);
+  border: 1px solid var(--rule);
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 18px; font-weight: 700;
+  color: var(--gold-lt);
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.wf-num.institutional {
+  background: rgba(255,255,255,0.05);
+  border-color: rgba(255,255,255,0.15);
+  color: rgba(255,255,255,0.6);
+}
+.wf-content {}
+.wf-name {
+  font-size: 14px; font-weight: 600;
+  color: var(--white); margin-bottom: 4px;
+  line-height: 1.2;
+}
+.wf-desc {
+  font-size: 13px; color: rgba(255,255,255,0.4);
+  line-height: 1.65; font-weight: 300;
+}
+.wf-tag {
+  display: inline-block; margin-top: 6px;
+  font-size: 9px; font-weight: 600;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--gold);
+  border: 1px solid var(--rule);
+  padding: 2px 8px; border-radius: 2px;
+}
+.wf-tag.backstop {
+  color: rgba(255,255,255,0.4);
+  border-color: rgba(255,255,255,0.15);
+}
+
+/* ─── CONSIDERATION TABLE ─── */
+.consid-table { width: 100%; border-collapse: collapse; margin-top: 32px; }
+.consid-table thead tr {
+  background: var(--gold);
+}
+.consid-table th {
+  padding: clamp(12px,2vw,16px) clamp(14px,2vw,20px);
+  text-align: left; font-size: 11px; font-weight: 700;
+  letter-spacing: 0.08em; text-transform: uppercase;
+  color: var(--navy);
+}
+.consid-table td {
+  padding: clamp(12px,2vw,16px) clamp(14px,2vw,20px);
+  border-bottom: 1px solid rgba(0,30,60,0.08);
+  font-size: 14px; color: var(--ink);
+  vertical-align: top;
+}
+.consid-table tr:last-child td { border-bottom: none; }
+.consid-table tr:nth-child(even) td { background: rgba(0,30,60,0.03); }
+.consid-table td:first-child { font-weight: 600; color: var(--navy); }
+.td-big {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(18px,2.5vw,24px) !important;
+  font-weight: 700 !important;
+  color: var(--navy) !important;
+}
+
+/* ─── DATA TABLE (general) ─── */
+.data-table { width: 100%; border-collapse: collapse; margin-top: 24px; }
+.data-table thead tr { background: var(--navy); }
+.data-table th {
+  padding: 12px 16px; text-align: left;
+  font-size: 10.5px; font-weight: 600;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  color: rgba(255,255,255,0.7);
+}
+.data-table td {
+  padding: 12px 16px;
+  border-bottom: 1px solid rgba(0,30,60,0.08);
+  font-size: 14px; color: var(--ink);
+}
+.data-table tr:last-child td { border-bottom: none; }
+.data-table tr:nth-child(even) td { background: rgba(0,30,60,0.03); }
+.data-table td:first-child { font-weight: 600; color: var(--navy); }
+
+/* ─── RISK CARDS ─── */
+.risk-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-top: 40px;
+}
+.risk-card {
+  background: var(--navy-ui);
+  border: 1px solid var(--border);
+  border-top: 2px solid rgba(201,152,42,0.4);
+  padding: clamp(20px,3vw,28px);
+  border-radius: 0 0 3px 3px;
+}
+.risk-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(16px,2.2vw,20px);
+  font-weight: 600; color: var(--white);
+  margin-bottom: 10px; line-height: 1.2;
+}
+.risk-desc {
+  font-size: 13px; color: rgba(255,255,255,0.45);
+  line-height: 1.75; font-weight: 300;
+}
+
+/* ─── ADVISOR BLOCK ─── */
+.advisor-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  margin-top: 32px;
+}
+.advisor-block {
+  background: var(--navy-ui);
+  border: 1px solid var(--border);
+  border-radius: 3px; overflow: hidden;
+}
+.advisor-head {
+  padding: 14px 20px;
+  border-bottom: 1px solid var(--border);
+  font-size: 10px; font-weight: 700;
+  letter-spacing: 0.16em; text-transform: uppercase;
+  color: var(--gold);
+}
+.advisor-row {
+  display: flex; justify-content: space-between;
+  align-items: flex-start; gap: 12px;
+  padding: 12px 20px;
+  border-bottom: 1px solid var(--border);
+  font-size: 13px;
+}
+.advisor-row:last-child { border-bottom: none; }
+.a-role {
+  color: rgba(255,255,255,0.3);
+  font-size: 11px; text-transform: uppercase;
+  letter-spacing: 0.06em; font-weight: 500;
+  flex-shrink: 0; padding-top: 1px;
+}
+.a-name { color: rgba(255,255,255,0.75); font-weight: 500; text-align: right; }
+
+/* ─── SOURCE LIST ─── */
+.source-section {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid var(--border);
+  border-radius: 3px;
+  padding: clamp(20px,3vw,28px);
+  margin-top: 40px;
+}
+.source-title {
+  font-size: 9.5px; font-weight: 700;
+  letter-spacing: 0.16em; text-transform: uppercase;
+  color: rgba(201,152,42,0.5); margin-bottom: 16px;
+  padding-bottom: 12px; border-bottom: 1px solid var(--border);
+}
+.source-list { list-style: none; padding: 0; }
+.source-list li {
+  font-size: 12px; color: rgba(255,255,255,0.35);
+  padding: 7px 0; border-bottom: 1px solid rgba(255,255,255,0.04);
+  line-height: 1.5;
+}
+.source-list li:last-child { border-bottom: none; }
+.source-list a { color: rgba(201,152,42,0.6); text-decoration: none; }
+.source-list a:hover { color: var(--gold-lt); text-decoration: underline; }
+
+/* ─── FOOTER ─── */
+footer {
+  background: #000E1F;
+  padding: clamp(40px,6vw,64px) clamp(20px,5vw,64px);
+  border-top: 1px solid var(--border);
+}
+.footer-inner { max-width: 1100px; margin: 0 auto; }
+.footer-top {
+  display: flex; justify-content: space-between;
+  align-items: flex-start; gap: 24px;
+  flex-wrap: wrap;
+  padding-bottom: 28px;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 24px;
+}
+.footer-brand {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 17px; font-weight: 600;
+  color: rgba(255,255,255,0.7);
+}
+.footer-byline {
+  font-size: 12px; color: rgba(255,255,255,0.3);
+  margin-top: 6px; line-height: 1.5;
+}
+.footer-link {
+  color: var(--gold); text-decoration: none;
+  font-weight: 500;
+}
+.footer-link:hover { text-decoration: underline; }
+.footer-disclaimer {
+  font-size: 11.5px; color: rgba(255,255,255,0.2);
+  line-height: 1.75;
+}
+.footer-copy {
+  margin-top: 20px;
+  font-size: 11px; color: rgba(255,255,255,0.15);
+}
+
+/* ─── INLINE SECTION NAV ANCHORS ─── */
+[id] { scroll-margin-top: 72px; }
+
+/* ─── RESPONSIVE ─── */
+@media (max-width: 768px) {
+  .nav-links { display: none; }
+  .hamburger { display: flex; }
+
+  .stats-row {
+    grid-template-columns: 1fr 1fr;
+  }
+  .stat-cell:nth-child(2) { border-right: none; }
+  .stat-cell:nth-child(3) { border-top: 1px solid var(--border); }
+  .stat-cell:nth-child(4) { border-top: 1px solid var(--border); border-right: none; }
+
+  .col-2 { grid-template-columns: 1fr; }
+  .col-3 { grid-template-columns: 1fr; }
+  .step-grid { grid-template-columns: 1fr; }
+  .risk-grid { grid-template-columns: 1fr; }
+  .advisor-grid { grid-template-columns: 1fr; }
+
+  .party-stats { grid-template-columns: 1fr 1fr; }
+
+  /* Consideration table - stack on mobile */
+  .consid-mobile-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  .consid-mobile-wrap table { min-width: 560px; }
+
+  .advisor-row { flex-direction: column; gap: 4px; }
+  .a-name { text-align: left; }
+  .footer-top { flex-direction: column; }
+  .wf-row { grid-template-columns: 36px 1fr; }
+
+  /* Diagram scroll */
+  .diagram-wrap { padding: clamp(16px,4vw,24px); }
+}
+
+@media (max-width: 480px) {
+  .stats-row { grid-template-columns: 1fr 1fr; }
+  .hero-eyebrow { flex-wrap: wrap; gap: 8px; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">CLBK + NFBK</div>
+  <ul class="nav-links">
+    <li><a href="#overview">Overview</a></li>
+    <li><a href="#parties">Parties</a></li>
+    <li><a href="#structure">Structure</a></li>
+    <li><a href="#corpactions">Corp. Actions</a></li>
+    <li><a href="#offering">Offering</a></li>
+    <li><a href="#consideration">Consideration</a></li>
+    <li><a href="#risks">Risks</a></li>
+    <li><a href="#advisors">Advisors</a></li>
+  </ul>
+  <div class="hamburger" onclick="toggleMenu()" id="hbg">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#overview" onclick="closeMenu()">Overview</a>
+  <a href="#parties" onclick="closeMenu()">Parties</a>
+  <a href="#structure" onclick="closeMenu()">Deal Structure</a>
+  <a href="#corpactions" onclick="closeMenu()">Corporate Actions</a>
+  <a href="#offering" onclick="closeMenu()">Offering</a>
+  <a href="#consideration" onclick="closeMenu()">Consideration</a>
+  <a href="#risks" onclick="closeMenu()">Risks</a>
+  <a href="#advisors" onclick="closeMenu()">Advisors</a>
+</div>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-inner">
+    <div class="hero-eyebrow">
+      <div class="hero-tag">Transaction Analysis</div>
+      <div class="hero-date">Announced February 2, 2026 &nbsp;&bull;&nbsp; New Jersey / New York</div>
+    </div>
+    <h1>Two Community Banks. <em>One Highly Structured Transaction.</em></h1>
+    <div class="hero-rule"></div>
+    <p class="hero-lead">Columbia Financial's acquisition of Northfield Bancorp is simultaneously a mutual-to-stock conversion, a $1.4&ndash;$1.9 billion public offering, and a corporate merger&mdash;all sequenced in precise order, each contingent on the last. When complete, the combined institution will rank as the third-largest regional bank headquartered in New Jersey.</p>
+    <div class="stats-row">
+      <div class="stat-cell">
+        <div class="stat-val">$597M</div>
+        <div class="stat-lbl">Transaction Value</div>
+      </div>
+      <div class="stat-cell">
+        <div class="stat-val">$18B</div>
+        <div class="stat-lbl">Pro Forma Assets</div>
+      </div>
+      <div class="stat-cell">
+        <div class="stat-val">$1.675B</div>
+        <div class="stat-lbl">Offering Midpoint</div>
+      </div>
+      <div class="stat-cell">
+        <div class="stat-val">108</div>
+        <div class="stat-lbl">Combined Branches</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- OVERVIEW -->
+<div class="section-dark" id="overview">
+<div class="section-inner">
+  <div class="section-label-dark">Background</div>
+  <h2 class="dark">A Deal Years in the Making</h2>
+  <div class="gold-rule"></div>
+
+  <div class="col-2">
+    <div>
+      <p class="dark-p">On February 2, 2026, Columbia Financial, Inc. (Nasdaq: CLBK) and Northfield Bancorp, Inc. (Nasdaq: NFBK) announced a definitive merger agreement under which Columbia will acquire Northfield for approximately $597 million. <span class="src">8-K, Feb. 2, 2026</span></p>
+      <p class="dark-p">Northfield Bank was organized in 1887 as the Northfield Building and Loan Association on the north shore of Staten Island, New York. The bank took its name from the Town of Northfield&mdash;one of the four original administrative townships into which Staten Island was divided by the English in 1688. That township was dissolved in 1898 upon consolidation into New York City; its name survives today in the bank itself and in community organizations along the north shore. Over more than 135 years, Northfield grew to become a cornerstone institution on Staten Island, extending its reach into Brooklyn and four New Jersey counties. At announcement, Northfield operated 19 branches on Staten Island alone, representing a deposit base of approximately $2.1 billion in the New York boroughs. <span class="src">NFBK LinkedIn &mdash; Wikipedia, Town of Northfield &mdash; S-1, Mar. 2026</span></p>
+      <p class="dark-p">Columbia Bank was founded in 1927 as a federally chartered savings bank in Fair Lawn, New Jersey. Following its mutual holding company reorganization in 1997 and its minority public offering in 2018, Columbia has executed four acquisitions and grown its balance sheet to more than $10.8 billion in assets. <span class="src">CLBK 10-K, 2025</span></p>
+      <p class="dark-p">The origins of this specific transaction trace to a June 13, 2025 meeting between Columbia CEO Thomas Kemly and Northfield CEO Steven Klein, during which Kemly raised the concept of a simultaneous second-step conversion and acquisition. That conversation followed a period in which the Northfield board had explored and ultimately declined a separate transaction with an unnamed third party, whose indication of value ranged from $10.29 to $12.84 per Northfield share. <span class="src">S-4, Mar. 6, 2026</span></p>
+    </div>
+    <div>
+      <div class="callout">
+        <p>"This merger will strengthen our over 130-year commitment to the people and businesses of Staten Island and provide greater lending capacity to our customers."</p>
+        <div class="callout-src">Steven M. Klein, Chairman, President and CEO, Northfield Bancorp &mdash; Joint Press Release, February 2, 2026</div>
+      </div>
+      <p class="dark-p">The Northfield board unanimously approved the merger agreement. Directors and executive officers of both companies entered into support agreements committing to vote their shares in favor of the transaction. Settlement agreements were also reached with Northfield's executive officers, providing lump-sum payments totaling over $13 million, contingent on closing. <span class="src">NFBK 8-K, Feb. 2, 2026</span></p>
+      <p class="dark-p">The anticipated closing is early in the third quarter of 2026, subject to regulatory approvals, shareholder and depositor votes, completion of the second-step conversion, and other customary conditions. Full systems integration of Northfield Bank into Columbia Bank is targeted for the first quarter of 2027. <span class="src">S-1, Mar. 6, 2026</span></p>
+      <p class="dark-p">Post-merger, approximately 19% of the combined company's branches will be located in New York City boroughs&mdash;marking Columbia's first entry into the New York market. <span class="src">Banking Dive, Feb. 2026</span></p>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- PARTIES -->
+<div class="section-dark" id="parties" style="border-top:1px solid rgba(201,152,42,0.2);">
+<div class="section-inner">
+  <div class="section-label-dark">The Institutions</div>
+  <h2 class="dark">Profiles of the Parties</h2>
+  <div class="gold-rule"></div>
+  <p class="lead-dark">Two long-established community banking franchises with complementary geographic footprints&mdash;one rooted in New Jersey, one in Staten Island&mdash;both tracing their origins to the mutual savings bank tradition.</p>
+
+  <div class="col-2">
+    <!-- Columbia -->
+    <div class="party-card">
+      <div class="party-head">
+        <div class="party-head-text">
+          <div class="party-name">Columbia Financial, Inc.</div>
+          <div class="party-sub">Columbia Bank &mdash; Fair Lawn, NJ &mdash; Est. 1927</div>
+        </div>
+        <div class="ticker-badge">CLBK</div>
+      </div>
+      <div class="party-stats">
+        <div class="ps-cell">
+          <div class="ps-label">Total Assets</div>
+          <div class="ps-val">$10.8B</div>
+        </div>
+        <div class="ps-cell">
+          <div class="ps-label">Total Deposits</div>
+          <div class="ps-val">$8.1B</div>
+        </div>
+        <div class="ps-cell">
+          <div class="ps-label">Branches</div>
+          <div class="ps-val">71</div>
+        </div>
+        <div class="ps-cell">
+          <div class="ps-label">NIM (Q4 2025)</div>
+          <div class="ps-val">2.70%</div>
+        </div>
+      </div>
+      <div class="party-body">
+        <p>Columbia Bank operates exclusively in New Jersey across twelve counties. The bank is organized as a covered savings association under the Home Owners' Loan Act, affording it national bank equivalent powers. Columbia Financial (Delaware) serves as mid-tier holding company, with 73.1% owned by Columbia Bank MHC, a federally chartered mutual holding company. The public float represents 26.9% of outstanding shares. <span class="src">CLBK 10-K, 2025</span></p>
+        <div class="party-note">Deposit base: $8.096B across approximately 215,000 accounts as of December 31, 2024. Municipal deposits totaled $969.4M (11.9% of total). <span class="src">CLBK 10-K, 2024</span></div>
+      </div>
+    </div>
+
+    <!-- Northfield -->
+    <div class="party-card">
+      <div class="party-head">
+        <div class="party-head-text">
+          <div class="party-name">Northfield Bancorp, Inc.</div>
+          <div class="party-sub">Northfield Bank &mdash; Woodbridge, NJ &mdash; Est. 1887, Staten Island</div>
+        </div>
+        <div class="ticker-badge">NFBK</div>
+      </div>
+      <div class="party-stats">
+        <div class="ps-cell">
+          <div class="ps-label">Total Assets</div>
+          <div class="ps-val">$5.8B</div>
+        </div>
+        <div class="ps-cell">
+          <div class="ps-label">Total Deposits</div>
+          <div class="ps-val">$4.0B</div>
+        </div>
+        <div class="ps-cell">
+          <div class="ps-label">Branches</div>
+          <div class="ps-val">37</div>
+        </div>
+        <div class="ps-cell">
+          <div class="ps-label">TBV/Share (Q3 2025)</div>
+          <div class="ps-val">$16.23</div>
+        </div>
+      </div>
+      <div class="party-body">
+        <p>Founded in 1887 as the Northfield Building and Loan Association on the north shore of Staten Island, the bank takes its name from the historic Town of Northfield&mdash;one of four administrative townships established on Staten Island in 1688, dissolved upon New York City consolidation in 1898. Today Northfield Bank operates across Staten Island and Brooklyn in New York, and Hunterdon, Middlesex, Mercer, and Union counties in New Jersey. Its loan portfolio is concentrated in multifamily and commercial real estate, representing more than 80% of total loans. <span class="src">NFBK LinkedIn &mdash; NFBK 10-K, 2024</span></p>
+        <div class="party-note">In July 2020, Northfield absorbed Victory State Bank (VSB Bancorp) for approximately $63 million, adding six Staten Island locations. Northfield's New York boroughs deposit base totaled approximately $2.1 billion as of December 31, 2025. <span class="src">Globe Newswire, July 2020 &mdash; S-1, Mar. 2026</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- STRUCTURE -->
+<div class="section-light" id="structure">
+<div class="section-inner">
+  <div class="section-label">Transaction Architecture</div>
+  <h2 class="light">A Three-Part Transaction in Sequential Order</h2>
+  <div class="gold-rule" style="background:var(--navy);"></div>
+  <p class="lead-light">This is not a conventional bank acquisition. Structures of this kind&mdash;a simultaneous second-step conversion and merger&mdash;are rare. Each of the three events described below must execute in strict sequence, governed by separate legal documents, separate regulatory approvals, and separate shareholder and depositor votes. A failure or delay at any stage blocks the stages that follow. In aggregate, the transaction generates three distinct corporate actions, each landing on a different shareholder population simultaneously.</p>
+
+  <div class="step-grid">
+    <div class="step-card">
+      <div class="step-number">1</div>
+      <div class="step-label">Step One</div>
+      <div class="step-title">Mutual-to-Stock Conversion</div>
+      <div class="step-desc">Columbia Bank MHC converts from a mutual holding company to a stock holding company. A new Maryland corporation, also named Columbia Financial, Inc., is formed as the post-conversion parent. The MHC and the existing Delaware Columbia Financial entity are both dissolved. The MHC's 73.1% ownership interest is monetized through the public offering in Step 2. <span class="src" style="color:rgba(201,152,42,0.6); border-color:rgba(201,152,42,0.2);">S-1, Mar. 2026</span></div>
+    </div>
+    <div class="step-card">
+      <div class="step-number">2</div>
+      <div class="step-label">Step Two</div>
+      <div class="step-title">The Conversion Stock Offering</div>
+      <div class="step-desc">The new Maryland holding company sells shares representing the MHC's former ownership interest at $10.00 per share. The offering proceeds through a defined priority waterfall: eligible Columbia Bank depositors, the ESOP, supplemental depositors, a community offering for residents of eleven New Jersey counties, and a firm-commitment institutional backstop. Gross proceeds range from $1.424B to $1.926B, with a midpoint of $1.675B. <span class="src" style="color:rgba(201,152,42,0.6); border-color:rgba(201,152,42,0.2);">S-1, Mar. 2026</span></div>
+    </div>
+    <div class="step-card">
+      <div class="step-number">3</div>
+      <div class="step-label">Step Three</div>
+      <div class="step-title">Merger of Northfield Bancorp</div>
+      <div class="step-desc">Immediately following the close of the conversion and offering, Northfield Bancorp merges into the new Columbia Financial holding company, and Northfield Bank merges into Columbia Bank. Northfield shareholders receive either stock or cash at a ratio determined by the final independent appraisal, subject to a 30% aggregate cash cap. <span class="src" style="color:rgba(201,152,42,0.6); border-color:rgba(201,152,42,0.2);">Form 425, Feb. 2026</span></div>
+    </div>
+  </div>
+
+  <!-- CORPORATE ACTIONS -->
+  <div id="corpactions" style="margin-top:48px; padding-top:48px; border-top:1px solid rgba(0,30,60,0.1);">
+    <div class="section-label">Corporate Actions Embedded in This Transaction</div>
+    <h3 class="serif" style="font-size:clamp(22px,3vw,32px); color:var(--navy); font-weight:600; margin-bottom:12px; line-height:1.15;">Three Simultaneous Corporate Actions. Three Different Shareholder Populations.</h3>
+    <p class="lead-light" style="margin-bottom:32px;">Corporate actions professionals and securities operations teams should note that this transaction is not a single event processed through one workflow. It embeds three distinct corporate action types, each with different mechanics, different eligible populations, and different operational touchpoints&mdash;executing in rapid succession around the same closing date.</p>
+
+    <div class="col-3" style="gap:3px;">
+
+      <!-- CA 1: Mandatory Exchange -->
+      <div style="background:var(--navy); border:1px solid rgba(201,152,42,0.25); border-top:3px solid var(--gold); padding:clamp(20px,3vw,28px); border-radius:0 0 3px 3px;">
+        <div style="font-size:9.5px; font-weight:700; letter-spacing:0.16em; text-transform:uppercase; color:var(--gold); margin-bottom:10px;">Corporate Action 1</div>
+        <div style="font-family:'Cormorant Garamond',serif; font-size:clamp(17px,2.2vw,22px); font-weight:600; color:white; margin-bottom:12px; line-height:1.2;">Mandatory Share Exchange</div>
+        <div style="font-size:9px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:rgba(201,152,42,0.6); margin-bottom:14px;">Affected Population: Existing CLBK Public Shareholders</div>
+        <p style="font-size:13px; color:rgba(255,255,255,0.5); line-height:1.75; font-weight:300; margin-bottom:12px;">Every holder of Columbia Financial (Delaware) common stock will have their shares automatically exchanged for shares of the new Maryland holding company at a ratio of 1.8729x to 2.5340x per current CLBK share, depending on the final independent appraisal. This is a mandatory event&mdash;there is no election, no opt-out, and no cash alternative. The Delaware entity ceases to exist. <span style="display:inline-block; background:rgba(201,152,42,0.12); color:var(--gold); font-size:9.5px; font-weight:600; letter-spacing:0.1em; text-transform:uppercase; padding:2px 7px; border-radius:2px; margin-left:5px;">S-1, Mar. 2026</span></p>
+        <div style="background:rgba(201,152,42,0.07); border:1px solid rgba(201,152,42,0.15); border-radius:2px; padding:12px 14px; margin-top:14px;">
+          <div style="font-size:10px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:rgba(201,152,42,0.6); margin-bottom:6px;">Operations Note</div>
+          <div style="font-size:12px; color:rgba(255,255,255,0.4); line-height:1.6;">New CUSIP. New issuer. Position records at DTC and at every downstream custodian must be updated at conversion close. The existing CLBK CUSIP will be retired simultaneously with the dissolution of the Delaware entity.</div>
+        </div>
+      </div>
+
+      <!-- CA 2: Subscription Rights Offering -->
+      <div style="background:var(--navy); border:1px solid rgba(201,152,42,0.25); border-top:3px solid var(--gold); padding:clamp(20px,3vw,28px); border-radius:0 0 3px 3px;">
+        <div style="font-size:9.5px; font-weight:700; letter-spacing:0.16em; text-transform:uppercase; color:var(--gold); margin-bottom:10px;">Corporate Action 2</div>
+        <div style="font-family:'Cormorant Garamond',serif; font-size:clamp(17px,2.2vw,22px); font-weight:600; color:white; margin-bottom:12px; line-height:1.2;">Priority Subscription Offering</div>
+        <div style="font-size:9px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:rgba(201,152,42,0.6); margin-bottom:14px;">Affected Population: Eligible Columbia Bank Depositors</div>
+        <p style="font-size:13px; color:rgba(255,255,255,0.5); line-height:1.75; font-weight:300; margin-bottom:12px;">While not a traditional rights offering in the securities law sense, the conversion subscription offering follows the same fundamental logic: a defined population receives a priority entitlement to purchase newly issued shares at a fixed price before the offering opens to the broader public. Eligible depositors as of December 31, 2024 receive subscription rights proportional to their deposit balances. Maximum per subscriber: $500,000 (50,000 shares). <span style="display:inline-block; background:rgba(201,152,42,0.12); color:var(--gold); font-size:9.5px; font-weight:600; letter-spacing:0.1em; text-transform:uppercase; padding:2px 7px; border-radius:2px; margin-left:5px;">S-1, Mar. 2026</span></p>
+        <div style="background:rgba(201,152,42,0.07); border:1px solid rgba(201,152,42,0.15); border-radius:2px; padding:12px 14px; margin-top:14px;">
+          <div style="font-size:10px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:rgba(201,152,42,0.6); margin-bottom:6px;">Operations Note</div>
+          <div style="font-size:12px; color:rgba(255,255,255,0.4); line-height:1.6;">The subscription rights carry no CUSIP and are not DTC-eligible. There is no secondary market for the rights. All subscriptions are submitted via paper stock order forms to the Stock Information Center. Orders are irrevocable once submitted.</div>
+        </div>
+      </div>
+
+      <!-- CA 3: Merger Consideration Election -->
+      <div style="background:var(--navy); border:1px solid rgba(201,152,42,0.25); border-top:3px solid var(--gold); padding:clamp(20px,3vw,28px); border-radius:0 0 3px 3px;">
+        <div style="font-size:9.5px; font-weight:700; letter-spacing:0.16em; text-transform:uppercase; color:var(--gold); margin-bottom:10px;">Corporate Action 3</div>
+        <div style="font-family:'Cormorant Garamond',serif; font-size:clamp(17px,2.2vw,22px); font-weight:600; color:white; margin-bottom:12px; line-height:1.2;">Merger Consideration Election</div>
+        <div style="font-size:9px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:rgba(201,152,42,0.6); margin-bottom:14px;">Affected Population: Northfield Bancorp Shareholders</div>
+        <p style="font-size:13px; color:rgba(255,255,255,0.5); line-height:1.75; font-weight:300; margin-bottom:12px;">Each NFBK shareholder must make a stock or cash election prior to the merger effective date, subject to a 30% aggregate cash cap and proration. The exchange ratio and cash price are not fixed&mdash;they float with the final independent appraisal across three valuation tiers. The stock consideration consists of shares in the new Maryland holding company, an issuer with no prior trading history. <span style="display:inline-block; background:rgba(201,152,42,0.12); color:var(--gold); font-size:9.5px; font-weight:600; letter-spacing:0.1em; text-transform:uppercase; padding:2px 7px; border-radius:2px; margin-left:5px;">Merger Agreement, Feb. 2026</span></p>
+        <div style="background:rgba(201,152,42,0.07); border:1px solid rgba(201,152,42,0.15); border-radius:2px; padding:12px 14px; margin-top:14px;">
+          <div style="font-size:10px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:rgba(201,152,42,0.6); margin-bottom:6px;">Operations Note</div>
+          <div style="font-size:12px; color:rgba(255,255,255,0.4); line-height:1.6;">NFBK shareholders electing stock will receive shares in an issuer whose reference price at delivery is set by appraisal methodology, not market price discovery. Proration mechanics apply if cash elections exceed the 30% aggregate cap.</div>
+        </div>
+      </div>
+
+    </div>
+
+    <div style="margin-top:20px; padding:20px 24px; background:rgba(201,152,42,0.05); border:1px solid rgba(201,152,42,0.15); border-radius:3px;">
+      <p style="font-size:13px; color:rgba(0,30,60,0.65); line-height:1.75; margin-bottom:0;"><strong style="color:var(--navy);">Sequencing matters.</strong> The mandatory CLBK share exchange and the priority subscription offering execute at conversion close&mdash;before the Northfield merger is effective. The NFBK consideration election is a separate event that follows. For custodians, broker-dealers, and transfer agents processing these events, each corporate action requires distinct operational handling despite closing within the same transaction window. <span style="display:inline-block; background:rgba(0,30,60,0.08); color:var(--navy-mid); font-size:9.5px; font-weight:600; letter-spacing:0.1em; text-transform:uppercase; padding:2px 7px; border-radius:2px; margin-left:5px;">S-1, Mar. 2026</span></p>
+    </div>
+  </div>
+
+  <!-- DIAGRAM -->
+  <div class="diagram-wrap" style="margin-top:40px;">
+    <div class="diagram-cap">Transaction Structure &mdash; Pre/Post Comparison</div>
+    <svg class="structure-svg" viewBox="0 0 1000 540" xmlns="http://www.w3.org/2000/svg" style="font-family:'DM Sans',sans-serif;">
+      <defs>
+        <marker id="arr" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+          <polygon points="0 0,8 3,0 6" fill="rgba(201,152,42,0.6)"/>
+        </marker>
+        <marker id="arrd" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+          <polygon points="0 0,8 3,0 6" fill="rgba(255,255,255,0.25)"/>
+        </marker>
+        <marker id="arrr" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+          <polygon points="0 0,8 3,0 6" fill="rgba(201,152,42,0.9)"/>
+        </marker>
+      </defs>
+
+      <!-- LABELS -->
+      <text x="30" y="26" font-size="10" fill="rgba(201,152,42,0.6)" font-weight="700" letter-spacing="3">PRE-TRANSACTION</text>
+      <text x="550" y="26" font-size="10" fill="rgba(201,152,42,0.6)" font-weight="700" letter-spacing="3">POST-TRANSACTION</text>
+      <line x1="490" y1="0" x2="490" y2="540" stroke="rgba(201,152,42,0.2)" stroke-width="1" stroke-dasharray="5,4"/>
+
+      <!-- PRE: MHC -->
+      <rect x="30" y="44" width="200" height="64" rx="2" fill="#0A2E58"/>
+      <text x="130" y="68" font-size="12" fill="white" text-anchor="middle" font-weight="600">Columbia Bank MHC</text>
+      <text x="130" y="84" font-size="10" fill="rgba(255,255,255,0.4)" text-anchor="middle">Federally Chartered Mutual HC</text>
+      <text x="130" y="98" font-size="10" fill="#C9982A" text-anchor="middle" font-weight="700">73.1% of CLBK</text>
+
+      <!-- PRE: Public float -->
+      <rect x="250" y="44" width="180" height="64" rx="2" fill="#0A2E58" stroke="rgba(201,152,42,0.3)" stroke-width="1"/>
+      <text x="340" y="68" font-size="12" fill="white" text-anchor="middle" font-weight="600">Public Shareholders</text>
+      <text x="340" y="84" font-size="10" fill="rgba(255,255,255,0.4)" text-anchor="middle">Nasdaq: CLBK</text>
+      <text x="340" y="98" font-size="10" fill="#C9982A" text-anchor="middle" font-weight="700">26.9% of CLBK</text>
+
+      <!-- PRE: CLBK Delaware -->
+      <rect x="30" y="190" width="200" height="64" rx="2" fill="#002B55"/>
+      <text x="130" y="214" font-size="12" fill="white" text-anchor="middle" font-weight="600">Columbia Financial, Inc.</text>
+      <text x="130" y="230" font-size="10" fill="rgba(255,255,255,0.4)" text-anchor="middle">Delaware Corp (CLBK)</text>
+      <text x="130" y="244" font-size="10" fill="rgba(255,255,255,0.35)" text-anchor="middle">Mid-Tier Holding Company</text>
+
+      <!-- PRE: Columbia Bank -->
+      <rect x="30" y="340" width="200" height="64" rx="2" fill="#001E3C"/>
+      <text x="130" y="364" font-size="12" fill="white" text-anchor="middle" font-weight="600">Columbia Bank</text>
+      <text x="130" y="380" font-size="10" fill="rgba(255,255,255,0.4)" text-anchor="middle">Federally Chartered Savings Bank</text>
+      <text x="130" y="394" font-size="10" fill="rgba(255,255,255,0.35)" text-anchor="middle">71 Branches, New Jersey</text>
+
+      <!-- PRE: NFBK -->
+      <rect x="255" y="340" width="180" height="64" rx="2" fill="#0A2E58" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+      <text x="345" y="364" font-size="12" fill="white" text-anchor="middle" font-weight="600">Northfield Bancorp</text>
+      <text x="345" y="380" font-size="10" fill="rgba(255,255,255,0.4)" text-anchor="middle">Delaware Corp (NFBK)</text>
+      <text x="345" y="394" font-size="10" fill="rgba(255,255,255,0.35)" text-anchor="middle">Holding Company</text>
+
+      <!-- PRE: Northfield Bank -->
+      <rect x="255" y="460" width="180" height="64" rx="2" fill="#001E3C" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>
+      <text x="345" y="484" font-size="12" fill="white" text-anchor="middle" font-weight="600">Northfield Bank</text>
+      <text x="345" y="500" font-size="10" fill="rgba(255,255,255,0.4)" text-anchor="middle">Federally Chartered Savings Bank</text>
+      <text x="345" y="514" font-size="10" fill="rgba(255,255,255,0.35)" text-anchor="middle">37 Branches, NY / NJ</text>
+
+      <!-- PRE arrows -->
+      <line x1="130" y1="108" x2="130" y2="188" stroke="rgba(201,152,42,0.5)" stroke-width="1.5" marker-end="url(#arr)" stroke-dasharray="4,3"/>
+      <line x1="340" y1="108" x2="215" y2="188" stroke="rgba(201,152,42,0.3)" stroke-width="1.5" marker-end="url(#arr)" stroke-dasharray="4,3"/>
+      <line x1="130" y1="254" x2="130" y2="338" stroke="rgba(201,152,42,0.5)" stroke-width="1.5" marker-end="url(#arr)"/>
+      <line x1="345" y1="404" x2="345" y2="458" stroke="rgba(255,255,255,0.2)" stroke-width="1.5" marker-end="url(#arrd)"/>
+
+      <!-- POST: New Columbia Financial MD -->
+      <rect x="520" y="44" width="220" height="64" rx="2" fill="#0A2E58" stroke="rgba(201,152,42,0.5)" stroke-width="1.5"/>
+      <text x="630" y="68" font-size="12" fill="white" text-anchor="middle" font-weight="600">Columbia Financial, Inc.</text>
+      <text x="630" y="84" font-size="10" fill="rgba(255,255,255,0.4)" text-anchor="middle">Maryland Corporation (CLBK)</text>
+      <text x="630" y="98" font-size="10" fill="#C9982A" text-anchor="middle" font-weight="700">100% Publicly Traded</text>
+
+      <!-- POST: All shareholders -->
+      <rect x="760" y="44" width="200" height="64" rx="2" fill="#001E3C" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+      <text x="860" y="68" font-size="12" fill="white" text-anchor="middle" font-weight="600">All Public Shareholders</text>
+      <text x="860" y="84" font-size="10" fill="rgba(255,255,255,0.4)" text-anchor="middle">Former depositors, MHC members</text>
+      <text x="860" y="98" font-size="10" fill="rgba(201,152,42,0.6)" text-anchor="middle">+ NFBK shareholders</text>
+
+      <!-- POST: Columbia Bank (surviving) -->
+      <rect x="520" y="270" width="220" height="80" rx="2" fill="#001E3C" stroke="rgba(201,152,42,0.4)" stroke-width="1.5"/>
+      <text x="630" y="298" font-size="12" fill="white" text-anchor="middle" font-weight="600">Columbia Bank</text>
+      <text x="630" y="314" font-size="10" fill="rgba(255,255,255,0.4)" text-anchor="middle">Surviving Banking Subsidiary</text>
+      <text x="630" y="330" font-size="10" fill="rgba(255,255,255,0.4)" text-anchor="middle">108 Combined Branches, NJ / NY</text>
+      <text x="630" y="344" font-size="10" fill="#C9982A" text-anchor="middle" font-weight="700">~$18B Pro Forma Assets</text>
+
+      <!-- POST: NFBK merge indication -->
+      <rect x="760" y="200" width="200" height="56" rx="2" fill="rgba(201,152,42,0.08)" stroke="rgba(201,152,42,0.3)" stroke-width="1" stroke-dasharray="5,3"/>
+      <text x="860" y="224" font-size="11" fill="rgba(201,152,42,0.8)" text-anchor="middle" font-weight="600">NFBK Shareholders</text>
+      <text x="860" y="240" font-size="10" fill="rgba(201,152,42,0.55)" text-anchor="middle">Stock or Cash Election</text>
+      <text x="860" y="254" font-size="10" fill="rgba(201,152,42,0.55)" text-anchor="middle">$14.25 &ndash; $14.65 / share</text>
+
+      <!-- Dissolved box -->
+      <rect x="520" y="420" width="220" height="64" rx="2" fill="rgba(255,255,255,0.02)" stroke="rgba(255,255,255,0.1)" stroke-width="1" stroke-dasharray="5,3"/>
+      <text x="630" y="442" font-size="10" fill="rgba(255,255,255,0.25)" text-anchor="middle" font-weight="600">DISSOLVED AT CLOSING</text>
+      <text x="630" y="458" font-size="10" fill="rgba(255,255,255,0.2)" text-anchor="middle">Columbia Bank MHC</text>
+      <text x="630" y="472" font-size="10" fill="rgba(255,255,255,0.2)" text-anchor="middle">Columbia Financial (DE) &bull; Northfield Bancorp &bull; Northfield Bank</text>
+
+      <!-- POST arrows -->
+      <line x1="630" y1="108" x2="630" y2="268" stroke="rgba(201,152,42,0.5)" stroke-width="1.5" marker-end="url(#arrr)"/>
+      <line x1="760" y1="228" x2="742" y2="305" stroke="rgba(201,152,42,0.4)" stroke-width="1.5" marker-end="url(#arrr)" stroke-dasharray="5,3"/>
+      <line x1="760" y1="76" x2="742" y2="76" stroke="rgba(255,255,255,0.2)" stroke-width="1.5" marker-end="url(#arrd)" stroke-dasharray="4,3"/>
+    </svg>
+  </div>
+
+  <div class="source-section" style="background:rgba(0,30,60,0.04); border-color:rgba(0,30,60,0.1);">
+    <div class="source-title" style="color:rgba(0,30,60,0.4);">Sources for Deal Structure</div>
+    <ul class="source-list" style="">
+      <li style="color:#4A5568; border-bottom-color:rgba(0,30,60,0.06);">Columbia Financial Form S-1, filed March 6, 2026 &mdash; <a href="https://www.sec.gov/Archives/edgar/data/0002115119/000119312526096731/d28556ds1.htm" target="_blank" style="color:var(--navy-mid);">SEC EDGAR</a></li>
+      <li style="color:#4A5568; border-bottom-color:rgba(0,30,60,0.06);">Joint Press Release, Columbia Financial / Northfield Bancorp, February 2, 2026 &mdash; <a href="https://www.globenewswire.com/news-release/2026/02/02/3230162/0/en/Columbia-Financial-Inc-and-Northfield-Bancorp-Inc-Announce-Plans-to-Merge.html" target="_blank" style="color:var(--navy-mid);">Globe Newswire</a></li>
+      <li style="color:#4A5568;">Columbia Financial Form 8-K (Merger Agreement), February 2, 2026 &mdash; <a href="https://www.sec.gov/Archives/edgar/data/0001723596/000172359626000004/clbk-20260202.htm" target="_blank" style="color:var(--navy-mid);">SEC EDGAR</a></li>
+    </ul>
+  </div>
+</div>
+</div>
+
+<!-- OFFERING -->
+<div class="section-dark" id="offering">
+<div class="section-inner">
+  <div class="section-label-dark">Second-Step Conversion &amp; Public Offering</div>
+  <h2 class="dark">Converting 73.1% of a Bank Into Public Stock</h2>
+  <div class="gold-rule"></div>
+  <p class="lead-dark">The conversion offering is the largest thrift second-step conversion in the New York-New Jersey metropolitan area in recent memory. At the midpoint, it raises $1.675 billion&mdash;nearly four times the size of Columbia's 2018 first-step offering.</p>
+
+  <div class="col-2">
+    <div>
+      <p class="dark-p">Columbia Bank MHC currently owns 76,016,524 shares of Columbia Financial, representing 73.1% of the company. Those shares have never been publicly traded. In the second-step conversion, the MHC's interest is monetized through a public stock offering by the newly formed Maryland holding company at $10.00 per share. The MHC and the existing Delaware Columbia Financial both dissolve upon completion. <span class="src">S-1, Mar. 2026</span></p>
+
+      <p class="dark-p">The offering range, set by an independent appraisal conducted by RP Financial, LC., runs from a minimum of 142,375,000 shares ($1.424 billion) to a maximum of 192,625,000 shares ($1.926 billion). The Federal Reserve Board must provide non-objection to the final appraisal before the offering can proceed. RP Financial will update the appraisal twice: once at the S-1 effective date and again immediately before the company goes to market. <span class="src">RP Financial Appraisal, Ex. 99.3, S-4</span></p>
+
+      <div class="appraisal-wrap">
+        <div class="appraisal-title">Independent Appraisal &mdash; Pro Forma Market Value Range</div>
+        <div class="bar-endpoints">
+          <span class="bar-endpoint">MINIMUM</span>
+          <span class="bar-endpoint">MAXIMUM</span>
+        </div>
+        <div class="bar-track-outer">
+          <div class="bar-fill-inner"></div>
+          <div class="bar-midmark"></div>
+        </div>
+        <div class="bar-vals">
+          <div class="bar-item">
+            <div class="bar-item-val">$1.948B</div>
+            <div class="bar-item-lbl">Minimum</div>
+          </div>
+          <div class="bar-item midpoint-val">
+            <div class="bar-item-val">$2.291B</div>
+            <div class="bar-item-lbl">Midpoint</div>
+          </div>
+          <div class="bar-item">
+            <div class="bar-item-val">$2.635B</div>
+            <div class="bar-item-lbl">Maximum</div>
+          </div>
+        </div>
+      </div>
+      <p class="dark-p" style="font-size:12px; color:rgba(255,255,255,0.3);">RP Financial appraisal as of February 2, 2026. 229,126,877 total shares at midpoint at $10.00 per share. Final appraisal subject to Federal Reserve Board non-objection. <span class="src">RP Financial Appraisal, Ex. 99.3</span></p>
+    </div>
+
+    <div>
+      <p class="dark-p" style="margin-bottom:20px;">The offering proceeds through five priority tiers. All subscription rights are non-transferable. They carry no CUSIP and are not administered through DTC. Rights are exercised exclusively through a paper-based stock order form submitted to the company's Stock Information Center, staffed by KBW representatives during the offering period. <span class="src">S-1, Mar. 2026</span></p>
+
+      <div class="waterfall">
+        <div class="wf-row">
+          <div class="wf-num">1</div>
+          <div class="wf-content">
+            <div class="wf-name">Eligible Account Holders</div>
+            <div class="wf-desc">Columbia Bank depositors with qualifying balances as of December 31, 2024. Allocation is proportional to deposit balance. Maximum purchase: $500,000 per subscriber (50,000 shares at $10.00). Minimum: 25 shares ($250).</div>
+            <div class="wf-tag">First Priority &mdash; Non-Transferable</div>
+          </div>
+        </div>
+        <div class="wf-row">
+          <div class="wf-num">2</div>
+          <div class="wf-content">
+            <div class="wf-name">Tax-Qualified Employee Plans</div>
+            <div class="wf-desc">Columbia Bank's Employee Stock Ownership Plan (ESOP) and other qualified benefit plans. Subordinate to Tier 1 depositors.</div>
+            <div class="wf-tag">Second Priority</div>
+          </div>
+        </div>
+        <div class="wf-row">
+          <div class="wf-num">3</div>
+          <div class="wf-content">
+            <div class="wf-name">Supplemental Account Holders</div>
+            <div class="wf-desc">Depositors with qualifying balances as of a supplemental record date, and other MHC members. Subordinate to Tier 2.</div>
+            <div class="wf-tag">Third Priority</div>
+          </div>
+        </div>
+        <div class="wf-row">
+          <div class="wf-num">4</div>
+          <div class="wf-content">
+            <div class="wf-name">Community Offering</div>
+            <div class="wf-desc">Natural persons residing in Bergen, Burlington, Camden, Essex, Gloucester, Middlesex, Monmouth, Morris, Passaic, Somerset, and Union Counties in New Jersey; then existing CLBK stockholders; then the general public.</div>
+            <div class="wf-tag">Geographic Preference</div>
+          </div>
+        </div>
+        <div class="wf-row">
+          <div class="wf-num institutional">5</div>
+          <div class="wf-content">
+            <div class="wf-name">Firm Commitment Underwriting</div>
+            <div class="wf-desc">KBW (lead-left), Piper Sandler (co-bookrunner), and Brean Capital (co-manager) commit to purchase any shares not absorbed in the subscription and community offerings. Management's base case assumes approximately 30% of shares clear through this channel.</div>
+            <div class="wf-tag backstop">Institutional Backstop</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- CONSIDERATION -->
+<div class="section-light" id="consideration">
+<div class="section-inner">
+  <div class="section-label">Merger Consideration</div>
+  <h2 class="light">What Northfield Shareholders Will Receive</h2>
+  <div class="gold-rule" style="background:var(--navy);"></div>
+  <p class="lead-light">Each outstanding share of Northfield Bancorp common stock will be converted, at the holder's election, into either shares of the new Columbia Financial holding company or cash. The per-share amount is determined by the final independent appraisal at closing&mdash;not fixed at announcement. No more than 30% of outstanding shares may be converted into cash.</p>
+
+  <div class="consid-mobile-wrap">
+    <table class="consid-table">
+      <thead>
+        <tr>
+          <th>Final Independent Valuation</th>
+          <th>Stock Election (shares per NFBK share)</th>
+          <th>Cash Election (per NFBK share)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Below $2.3 billion</td>
+          <td class="td-big">1.425x</td>
+          <td class="td-big">$14.25</td>
+        </tr>
+        <tr>
+          <td>$2.3 billion to $2.6 billion</td>
+          <td class="td-big">1.450x</td>
+          <td class="td-big">$14.50</td>
+        </tr>
+        <tr>
+          <td>$2.6 billion or above</td>
+          <td class="td-big">1.465x</td>
+          <td class="td-big">$14.65</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="callout-light">
+    <p>The preliminary RP Financial midpoint valuation of $2.291 billion, as of February 2, 2026, falls just below the first threshold of $2.3 billion. The final appraisal will be updated before the offering goes to market and is subject to Federal Reserve Board non-objection. The approximate 15.67% premium to Northfield's pre-announcement closing price is based on the $14.25 low-end consideration.</p>
+    <div class="callout-src">Source: RP Financial Independent Appraisal, Exhibit 99.3, Columbia Financial/MD Form S-4, March 6, 2026 &mdash; InsideArbitrage, February 2026</div>
+  </div>
+
+  <div class="col-2" style="margin-top:40px;">
+    <div>
+      <h3 class="serif" style="font-size:clamp(20px,3vw,26px); color:var(--navy); margin-bottom:16px; font-weight:600;">Key Financial Projections</h3>
+      <table class="data-table" style="background:white;">
+        <thead>
+          <tr>
+            <th style="background:var(--navy);">Metric</th>
+            <th style="background:var(--navy);">Projection</th>
+            <th style="background:var(--navy);">Basis</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>2027 EPS Accretion</td>
+            <td style="font-weight:700; color:var(--navy);">~50%</td>
+            <td style="color:var(--muted); font-size:12px;">Pro forma midpoint appraisal</td>
+          </tr>
+          <tr>
+            <td>TBV Dilution at Close</td>
+            <td style="font-weight:700; color:var(--navy);">~4.4%</td>
+            <td style="color:var(--muted); font-size:12px;">Management estimate</td>
+          </tr>
+          <tr>
+            <td>TBV Earnback Period</td>
+            <td style="font-weight:700; color:var(--navy);">~1.8 years</td>
+            <td style="color:var(--muted); font-size:12px;">Crossover method</td>
+          </tr>
+          <tr>
+            <td>Pro Forma ROA (2027)</td>
+            <td style="font-weight:700; color:var(--navy);">~1.06%</td>
+            <td style="color:var(--muted); font-size:12px;">Management estimate</td>
+          </tr>
+          <tr>
+            <td>Target Efficiency Ratio</td>
+            <td style="font-weight:700; color:var(--navy);">Below 50%</td>
+            <td style="color:var(--muted); font-size:12px;">Post-integration</td>
+          </tr>
+          <tr>
+            <td>Credit Mark on NFBK Loans</td>
+            <td style="font-weight:700; color:var(--navy);">$81M (2.1%)</td>
+            <td style="color:var(--muted); font-size:12px;">Independent due diligence</td>
+          </tr>
+        </tbody>
+      </table>
+      <p style="font-size:11.5px; color:var(--muted); margin-top:10px;">All projections are preliminary and based on a preliminary independent appraisal. The final appraisal may differ materially. <span class="src-dark">Investor Presentation, Feb. 2, 2026</span></p>
+    </div>
+    <div>
+      <h3 class="serif" style="font-size:clamp(20px,3vw,26px); color:var(--navy); margin-bottom:16px; font-weight:600;">Existing CLBK Shareholder Exchange</h3>
+      <p class="light-p">Existing public holders of Columbia Financial (Delaware) shares will not participate in the cash offering. Their shares will be exchanged for shares of the new Maryland holding company at a ratio intended to preserve their existing percentage ownership interest.</p>
+      <p class="light-p">The exchange ratio for existing public CLBK shareholders ranges from 1.8729 to 2.5340 shares of the new holding company per current CLBK share, depending on the final independent valuation. <span class="src-dark">S-1, Mar. 2026</span></p>
+      <p class="light-p">The aggregate merger consideration, based on the midpoint of the conversion offering range and a 1.425x exchange ratio, is approximately $597.1 million. Columbia expects to pay no more than $179.1 million in cash and issue approximately 41,800,140 shares, assuming 70% stock and 30% cash elections. <span class="src-dark">S-1, Mar. 2026</span></p>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- RISKS -->
+<div class="section-dark" id="risks">
+<div class="section-inner">
+  <div class="section-label-dark">Material Risks &amp; Contingencies</div>
+  <h2 class="dark">Open Questions and Structural Dependencies</h2>
+  <div class="gold-rule"></div>
+  <p class="lead-dark">Transactions of this structure are uncommon precisely because their execution risk is multiplicative, not additive. Each of the three sequential events carries its own approval requirements, regulatory gatekeepers, and failure conditions. A problem in any one stage does not merely delay that stage&mdash;it blocks every stage that follows. The risks below are drawn from the S-1 and S-4 registration statements filed with the SEC on March 6, 2026.</p>
+
+  <div class="risk-grid">
+    <div class="risk-card">
+      <div class="risk-title">Sequential Contingency: Three Gates, One Chain</div>
+      <div class="risk-desc">The merger cannot close unless the conversion closes first. The conversion cannot close unless the S-1 is declared effective by the SEC, the Federal Reserve Board provides non-objection to the final appraisal, Columbia Bank depositors vote to approve the conversion plan, and both companies' shareholders approve the merger. Each condition is a hard gate. There is no mechanism to close Step 3 independently if Steps 1 or 2 encounter a delay or failure. This structure has no parallel in standard merger-of-equals transactions. <span class="src">S-1, Mar. 2026</span></div>
+    </div>
+    <div class="risk-card">
+      <div class="risk-title">Floating Consideration</div>
+      <div class="risk-desc">The exchange ratio and per-share cash consideration are not fixed at signing. They depend on RP Financial's final appraisal, updated twice before closing. If the final valuation falls materially below the preliminary midpoint, consideration could shift to the lower tier or trigger a renegotiation. <span class="src">S-1, Mar. 2026</span></div>
+    </div>
+    <div class="risk-card">
+      <div class="risk-title">Multifamily and Rent-Regulated Exposure</div>
+      <div class="risk-desc">Northfield's loan portfolio is heavily concentrated in multifamily real estate, including New York City rent-regulated units. The aggregate credit and interest rate mark on the rent-regulated portfolio is 14%. Columbia and SRA Consulting reviewed 100% of rent-regulated, non-performing, and classified loans during due diligence. <span class="src">Investor Presentation, Feb. 2026</span></div>
+    </div>
+    <div class="risk-card">
+      <div class="risk-title">New York City Market Entry</div>
+      <div class="risk-desc">Post-merger, approximately 19% of combined branches will be located in New York City boroughs, marking Columbia's first entry into the New York market. The S-4 discloses risks related to Columbia's lack of operating history in these markets. <span class="src">S-4, Mar. 2026</span></div>
+    </div>
+    <div class="risk-card">
+      <div class="risk-title">Offering Undersubscription</div>
+      <div class="risk-desc">The conversion offering must sell a minimum of 142,375,000 shares to close. If the subscription and community offerings are undersubscribed below the adjusted minimum and the Northfield merger shares cannot bridge the gap, the entire offering would need to be repriced and resolicited. <span class="src">S-1, Mar. 2026</span></div>
+    </div>
+    <div class="risk-card">
+      <div class="risk-title">Shareholder Litigation</div>
+      <div class="risk-desc">As of early 2026, Monteverde &amp; Associates PC and Kahn Swick &amp; Foti, LLC each publicly disclosed investigations into the fairness of the merger to Northfield shareholders. No formal complaint had been publicly filed as of the date of this analysis. <span class="src">PR Newswire, Feb. 2, 2026</span></div>
+    </div>
+    <div class="risk-card">
+      <div class="risk-title">Integration Complexity</div>
+      <div class="risk-desc">Full systems integration of Northfield Bank into Columbia Bank is targeted for Q1 2027. The transaction involves two distinct regulatory systems, two branch networks, and two organizational cultures. Columbia has completed four prior acquisitions since 2019, providing operational precedent. <span class="src">CLBK 10-K, 2025</span></div>
+    </div>
+    <div class="risk-card">
+      <div class="risk-title">First-Year Buyback Restriction</div>
+      <div class="risk-desc">Federal Reserve Board regulations prohibit the new holding company from repurchasing its common stock during the first year following completion of the second-step conversion, limiting capital management flexibility in the initial trading period. <span class="src">S-1, Mar. 2026</span></div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- ADVISORS -->
+<div class="section-dark" id="advisors" style="border-top:1px solid rgba(201,152,42,0.15);">
+<div class="section-inner">
+  <div class="section-label-dark">Transaction Professionals</div>
+  <h2 class="dark">Financial and Legal Advisors</h2>
+  <div class="gold-rule"></div>
+
+  <div class="advisor-grid">
+    <div class="advisor-block">
+      <div class="advisor-head">Columbia Financial &mdash; Advisors</div>
+      <div class="advisor-row"><div class="a-role">Financial Advisor</div><div class="a-name">Keefe, Bruyette &amp; Woods, Inc., A Stifel Company</div></div>
+      <div class="advisor-row"><div class="a-role">Lead Bookrunner</div><div class="a-name">Keefe, Bruyette &amp; Woods, Inc.</div></div>
+      <div class="advisor-row"><div class="a-role">Co-Bookrunner</div><div class="a-name">Piper Sandler &amp; Co.</div></div>
+      <div class="advisor-row"><div class="a-role">Co-Manager</div><div class="a-name">Brean Capital, LLC</div></div>
+      <div class="advisor-row"><div class="a-role">Independent Appraiser</div><div class="a-name">RP Financial, LC.</div></div>
+      <div class="advisor-row"><div class="a-role">Legal Counsel</div><div class="a-name">Kilpatrick Townsend &amp; Stockton LLP</div></div>
+      <div class="advisor-row"><div class="a-role">Conversion Counsel</div><div class="a-name">Nutter McClennen &amp; Fish LLP</div></div>
+      <div class="advisor-row"><div class="a-role">Independent Auditor</div><div class="a-name">KPMG LLP</div></div>
+    </div>
+    <div class="advisor-block">
+      <div class="advisor-head">Northfield Bancorp &mdash; Advisors</div>
+      <div class="advisor-row"><div class="a-role">Financial Advisor / Fairness Opinion</div><div class="a-name">Raymond James &amp; Associates, Inc.</div></div>
+      <div class="advisor-row"><div class="a-role">Legal Counsel</div><div class="a-name">Luse Gorman, PC</div></div>
+    </div>
+  </div>
+
+  <div class="source-section" style="margin-top:40px;">
+    <div class="source-title">Primary Source Documents</div>
+    <ul class="source-list">
+      <li>Columbia Financial, Inc. and Northfield Bancorp, Inc. Joint Press Release, February 2, 2026 &mdash; <a href="https://www.globenewswire.com/news-release/2026/02/02/3230162/0/en/Columbia-Financial-Inc-and-Northfield-Bancorp-Inc-Announce-Plans-to-Merge.html" target="_blank">Globe Newswire</a></li>
+      <li>Columbia Financial, Inc./MD, Form S-1, March 6, 2026 &mdash; <a href="https://www.sec.gov/Archives/edgar/data/0002115119/000119312526096731/d28556ds1.htm" target="_blank">SEC EDGAR</a></li>
+      <li>Columbia Financial, Inc./MD, Form S-4 (including RP Financial Appraisal, Ex. 99.3), March 6, 2026 &mdash; <a href="https://www.sec.gov/Archives/edgar/data/0002115119/000119312526096747/d92655ds4.htm" target="_blank">SEC EDGAR</a></li>
+      <li>Northfield Bancorp, Inc. Annual Report on Form 10-K, fiscal year ended December 31, 2024 &mdash; <a href="https://ir.enorthfield.com" target="_blank">Northfield Investor Relations</a></li>
+      <li>Columbia Financial, Inc. Annual Report on Form 10-K, fiscal year ended December 31, 2025 &mdash; <a href="https://ir.columbiabankonline.com" target="_blank">Columbia Financial Investor Relations</a></li>
+      <li>CLBK / NFBK Investor Presentation, February 2, 2026 &mdash; <a href="https://s27.q4cdn.com/128555719/files/doc_events/2026/Feb/02/CLBK-NFBK-Merger-Presentation.pdf" target="_blank">Columbia Financial IR</a></li>
+      <li>Northfield Bancorp, Inc. Form 8-K (Merger Agreement), February 2, 2026 &mdash; <a href="https://www.sec.gov/Archives/edgar/data/0001493225/000110465926008996/tm264753d1_8k.htm" target="_blank">SEC EDGAR</a></li>
+      <li>VSB Bancorp / Northfield Bancorp Merger Completion, July 1, 2020 &mdash; <a href="https://www.globenewswire.com/en/news-release/2020/07/01/2056559/10432/en/Northfield-Bancorp-Inc-Completes-Acquisition-of-VSB-Bancorp-Inc.html" target="_blank">Globe Newswire</a></li>
+    </ul>
+  </div>
+</div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div>
+        <div class="footer-brand">Columbia Financial + Northfield Bancorp</div>
+        <div class="footer-byline">Analysis prepared by <a href="https://linkedin.com/in/tednawrockinyc/" class="footer-link" target="_blank">Ted Nawrocki</a> &mdash; Senior Manager, Financial Services &mdash; New York, NY</div>
+      </div>
+      <div>
+        <a href="https://linkedin.com/in/tednawrockinyc/" class="footer-link" target="_blank" style="font-size:12px; letter-spacing:0.06em; text-transform:uppercase;">linkedin.com/in/tednawrockinyc/</a>
+      </div>
+    </div>
+    <div class="footer-disclaimer">
+      <strong style="color:rgba(255,255,255,0.35);">Disclaimer:</strong> This analysis is prepared for educational and informational purposes only. It does not constitute investment advice, a recommendation to buy or sell any security, or legal, accounting, or regulatory guidance of any kind. The views expressed are the personal views of the author and do not represent the opinions of any employer, client, or affiliated organization. All information is sourced from publicly available SEC filings and disclosed investor materials. Readers should independently verify all facts and consult qualified professional advisors before making any investment or business decision. Nothing on this page constitutes an offer or solicitation with respect to any security.
+    </div>
+    <div class="footer-copy">&copy; 2026 Ted Nawrocki. All rights reserved.</div>
+  </div>
+</footer>
+
+<script>
+function toggleMenu() {
+  const menu = document.getElementById('mobileMenu');
+  menu.classList.toggle('open');
+}
+function closeMenu() {
+  document.getElementById('mobileMenu').classList.remove('open');
+}
+// Close menu when clicking outside
+document.addEventListener('click', function(e) {
+  const menu = document.getElementById('mobileMenu');
+  const hbg = document.getElementById('hbg');
+  if (menu.classList.contains('open') && !menu.contains(e.target) && !hbg.contains(e.target)) {
+    menu.classList.remove('open');
+  }
+});
+</script>
+</body>
+</html>
